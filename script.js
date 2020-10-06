@@ -1,46 +1,63 @@
 function add(a, b) {
-    return a + b;
+    //return +a + +b;
+    return displayNumber = +a + +b;
 };
 
 function subtract(a, b) {
-    return a - b;
+    return +a - +b;
 };
 
 function multiply(a, b) {
-    return a * b;
+    return +a * +b;
 };
 
 function divide(a, b) {
-    return a / b;
+    return +a / +b;
 };
 
-
+function setOperatorInput () {
+    
+}
 
 let operatorInput;
-const operator = document.querySelectorAll('.operator');
-operator.forEach((button) => {
+const operatorButton = document.querySelectorAll('.operator');
+operatorButton.forEach((button) => {
     button.addEventListener('click', () => {
         let x = button.id;
         switch (x) {
-            case 'divide':
-                operatorInput = '/';
-                break;
-            case 'multiply':
-                operatorInput = '*';
-                break;
-            case 'subtract':
-                operatorInput = '-';
-                break;
-            case 'add':
-                operatorInput = '+';
-                break;
-        } 
-        operateClear()
+        case 'divide':
+            operatorInput = divide;
+            break;
+        case 'multiply':
+            operatorInput = multiply;
+            break;
+        case 'subtract':
+            operatorInput = subtract;
+            break;
+        case 'add':
+            operatorInput = add;
+            break;
+        }
+        operateClear();
+        //if operatorInput is not null/undefined/whatever, call...whatever function
     })
 });
 
-function operate(operator, num1, num2) {
-    //call one of the above functions
+
+//clicking equals calls the operate function
+const equalsButton = document.querySelector('#equals');
+equalsButton.addEventListener('click', () => {
+    operate(operatorInput, oldNumber, displayNumber);
+})
+    //or clicking an operator when opretator does not equal undefined/null call operate function
+
+function operate(operatorFunc, num1, num2) {
+
+    operatorFunc(num1, num2);
+    //oldNumber = displayNumber;
+    //get new display number
+    return displayScreen.textContent = displayNumber;
+    
 };
 
 function operateClear() {
