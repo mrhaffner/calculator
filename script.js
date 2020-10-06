@@ -19,7 +19,7 @@ function operate(operator, num1, num2) {
 };
 
 
-let displayNumber = '0'
+let displayNumber = '0';
 const displayScreen = document.querySelector('#screen');
 displayScreen.textContent = displayNumber;
 
@@ -27,25 +27,38 @@ displayScreen.textContent = displayNumber;
 //this function needs to get an input number from the button click
 //that input number is then added to the end of a string or maybe array?(array would then need to be joined)
 function setDisplayNumber(num) {
-    getDisplayNumber(num)
+    getDisplayNumber(num);
     displayScreen.textContent = displayNumber;
 }
 
 function getDisplayNumber(num) {
-    let numberArray
+    let numberArray;
     displayNumber === '0' ? numberArray = [] : numberArray = displayNumber.split('');
     numberArray.push(num);
     displayNumber = numberArray.join('');
 }
 
 
-
-
 const numberButtons = document.querySelectorAll('.number');
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        setDisplayNumber(button.id)
-        console.log(button.id);
+        setDisplayNumber(button.id);
     });
 });
+
+
+function clearScreen () {
+    displayNumber = '0';
+    displayScreen.textContent = displayNumber;
+};
+
+const clearButton = document.querySelector('#clear');
+
+clearButton.addEventListener('click', () => {
+    clearScreen();
+});
+
+
+
+
