@@ -12,7 +12,13 @@ function multiply(a, b) {
 };
 
 function divide(a, b) {
-    return displayNumber = +a / +b;
+    if (+b === 0) {
+        alert('Divide by 0? yah Good luck with that')
+        return displayNumber = '0'
+    } 
+    else {
+        return displayNumber = +a / +b;
+    }
 };
 
 function setOperatorInput () {
@@ -41,6 +47,7 @@ operatorButton.forEach((button) => {
             };
             operateClear();
         } else {
+            operate(operatorInput, oldNumber, displayNumber);
             switch (x) {
             case 'divide':
                 operatorInput = divide;
@@ -55,7 +62,7 @@ operatorButton.forEach((button) => {
                 operatorInput = add;
                 break;
             };
-            operate(operatorInput, oldNumber, displayNumber);
+            
             operateClear();
         }
            
