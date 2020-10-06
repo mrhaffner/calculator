@@ -1,54 +1,75 @@
 function add(a, b) {
-    //return +a + +b;
+
     return displayNumber = +a + +b;
 };
 
 function subtract(a, b) {
-    return +a - +b;
+    return displayNumber = +a - +b;
 };
 
 function multiply(a, b) {
-    return +a * +b;
+    return displayNumber = +a * +b;
 };
 
 function divide(a, b) {
-    return +a / +b;
+    return displayNumber = +a / +b;
 };
 
 function setOperatorInput () {
     
 }
 
-let operatorInput;
+let operatorInput = null;
 const operatorButton = document.querySelectorAll('.operator');
 operatorButton.forEach((button) => {
     button.addEventListener('click', () => {
         let x = button.id;
-        switch (x) {
-        case 'divide':
-            operatorInput = divide;
-            break;
-        case 'multiply':
-            operatorInput = multiply;
-            break;
-        case 'subtract':
-            operatorInput = subtract;
-            break;
-        case 'add':
-            operatorInput = add;
-            break;
+        if (operatorInput === null) {
+            switch (x) {
+            case 'divide':
+                operatorInput = divide;
+                break;
+            case 'multiply':
+                operatorInput = multiply;
+                break;
+            case 'subtract':
+                operatorInput = subtract;
+                break;
+            case 'add':
+                operatorInput = add;
+                break;
+            };
+            operateClear();
+        } else {
+            switch (x) {
+            case 'divide':
+                operatorInput = divide;
+                break;
+            case 'multiply':
+                operatorInput = multiply;
+                break;
+            case 'subtract':
+                operatorInput = subtract;
+                break;
+            case 'add':
+                operatorInput = add;
+                break;
+            };
+            operate(operatorInput, oldNumber, displayNumber);
+            operateClear();
         }
-        operateClear();
+           
         //if operatorInput is not null/undefined/whatever, call...whatever function
     })
 });
 
 
-//clicking equals calls the operate function
 const equalsButton = document.querySelector('#equals');
 equalsButton.addEventListener('click', () => {
     operate(operatorInput, oldNumber, displayNumber);
-})
+    operatorInput = null;
+    //oldNumber = displayNumber
+});
     //or clicking an operator when opretator does not equal undefined/null call operate function
 
 function operate(operatorFunc, num1, num2) {
@@ -56,6 +77,7 @@ function operate(operatorFunc, num1, num2) {
     operatorFunc(num1, num2);
     //oldNumber = displayNumber;
     //get new display number
+    //operatorInput = null;
     return displayScreen.textContent = displayNumber;
     
 };
@@ -103,6 +125,7 @@ const clearButton = document.querySelector('#clear');
 
 clearButton.addEventListener('click', () => {
     clearScreen();
+    operatorInput = null;
 });
 
 
