@@ -14,18 +14,48 @@ function divide(a, b) {
     return a / b;
 };
 
+
+
+let operatorInput;
+const operator = document.querySelectorAll('.operator');
+operator.forEach((button) => {
+    button.addEventListener('click', () => {
+        let x = button.id;
+        switch (x) {
+            case 'divide':
+                operatorInput = '/';
+                break;
+            case 'multiply':
+                operatorInput = '*';
+                break;
+            case 'subtract':
+                operatorInput = '-';
+                break;
+            case 'add':
+                operatorInput = '+';
+                break;
+        } 
+        operateClear()
+    })
+});
+
 function operate(operator, num1, num2) {
     //call one of the above functions
 };
 
+function operateClear() {
+    oldNumber = displayNumber;
+    displayNumber = '0'
+};
+
+
 
 let displayNumber = '0';
+let oldNumber;
 const displayScreen = document.querySelector('#screen');
 displayScreen.textContent = displayNumber;
 
 
-//this function needs to get an input number from the button click
-//that input number is then added to the end of a string or maybe array?(array would then need to be joined)
 function setDisplayNumber(num) {
     getDisplayNumber(num);
     displayScreen.textContent = displayNumber;
@@ -40,7 +70,6 @@ function getDisplayNumber(num) {
 
 
 const numberButtons = document.querySelectorAll('.number');
-
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         setDisplayNumber(button.id);
