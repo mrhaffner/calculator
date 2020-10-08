@@ -1,3 +1,7 @@
+body {
+    font-family: RobotoMono-Regular;
+}
+
 #calcbody {
     background-color: #e2e6e9;
     margin: auto;
@@ -14,12 +18,12 @@
     background-color: #BECEE4;
     border-radius: 25px 25px 0 0;
     height: 160px;
+    
 }
 
 #screen {
     background-color: #F4F5E7;
     margin: 20px 20px 20px 20px;
-    /*text-align: end;*/
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -37,7 +41,12 @@
 }
 
 button {
-    font-size: 18px;;
+    font-size: 20px;
+    font-family: RobotoMono-Regular;
+    font-weight: bold;
+    margin: .5px;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 3px;
 }
 
 #clear { 
@@ -51,3 +60,8 @@ button {
 .operator {
     background-color: #BACFE4;
 }
+
+@font-face {
+    font-family: RobotoMono-Regular;
+    src: url(RobotoMono-Regular.ttf);
+  }
