@@ -1,14 +1,14 @@
 function add(a, b) {
 
-    return displayNumber = +a + +b;
+    return displayNumber = (+a + +b).toString();
 };
 
 function subtract(a, b) {
-    return displayNumber = +a - +b;
+    return displayNumber = (+a - +b).toString();
 };
 
 function multiply(a, b) {
-    return displayNumber = +a * +b;
+    return displayNumber = (+a * +b).toString();
 };
 
 function divide(a, b) {
@@ -17,7 +17,7 @@ function divide(a, b) {
         return displayNumber = '0'
     } 
     else {
-        return displayNumber = +a / +b;
+        return displayNumber = ((+a / +b).toFixed(5)).toString();
     }
 };
 
@@ -90,7 +90,13 @@ function operate(operatorFunc, num1, num2) {
     //oldNumber = displayNumber;
     //get new display number
     //operatorInput = null;
-    return displayScreen.textContent = displayNumber;
+    if (displayNumber.split('').length > 13) {
+        let tempNumber = +displayNumber
+        return displayScreen.textContent = tempNumber.toExponential(2)
+        //return displayScreen.textContent = '# 2 LONG 4 ME'
+    } else {
+        return displayScreen.textContent = displayNumber;
+    };
     
 };
 
@@ -114,19 +120,12 @@ function setDisplayNumber(num) {
 
 function getDisplayNumber(num) {
     let numberArray;
-    //displayNumber === '0' ? numberArray = [] : numberArray = displayNumber.split('');
     if (equalState === 1) {
         displayNumber = '0'
         equalState = 0;
     }
-    if (displayNumber === '0') {
-        numberArray = [];
-    } else if (typeof numberArray === 'string') {
-        numberArray = displayNumber.split('');
-    } else {
-        //let tempDisplayNumber = `'${displayNumber}'`;
-        numberArray = displayNumber.toString().split('');
-    }
+    displayNumber === '0' ? numberArray = [] : numberArray = displayNumber.split('');
+    if (numberArray.length > 12) return;
     numberArray.push(num);
     displayNumber = numberArray.join('');
 }
