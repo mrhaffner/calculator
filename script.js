@@ -108,8 +108,7 @@ function setDisplayNumber(num) {
 }
 
 function getDisplayNumber(num) {
-    let numberArray;
-    displayNumber === '0' ? numberArray = [] : numberArray = displayNumber.split('');
+    let numberArray = [];
     numberArray.push(num);
     displayNumber = numberArray.join('');
 }
