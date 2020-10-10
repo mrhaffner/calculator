@@ -70,12 +70,17 @@ operatorButton.forEach((button) => {
     })
 });
 
+//
+let equalState
+//
 
 const equalsButton = document.querySelector('#equals');
 equalsButton.addEventListener('click', () => {
     operate(operatorInput, oldNumber, displayNumber);
     operatorInput = null;
-    //oldNumber = displayNumber
+    oldNumber = displayNumber
+    //displayNumber = '0'
+    equalState = 1
 });
     //or clicking an operator when opretator does not equal undefined/null call operate function
 
@@ -108,7 +113,20 @@ function setDisplayNumber(num) {
 }
 
 function getDisplayNumber(num) {
-    let numberArray = [];
+    let numberArray;
+    //displayNumber === '0' ? numberArray = [] : numberArray = displayNumber.split('');
+    if (equalState === 1) {
+        displayNumber = '0'
+        equalState = 0;
+    }
+    if (displayNumber === '0') {
+        numberArray = [];
+    } else if (typeof numberArray === 'string') {
+        numberArray = displayNumber.split('');
+    } else {
+        //let tempDisplayNumber = `'${displayNumber}'`;
+        numberArray = displayNumber.toString().split('');
+    }
     numberArray.push(num);
     displayNumber = numberArray.join('');
 }
